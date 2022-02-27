@@ -55,14 +55,14 @@
                 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'woocs_settings_link' ) );
 
                 // functions & hooks
-                include 'inc/acfcs-actions.php';
-                include 'inc/wp-actions.php';
-                include 'inc/acfcs-functions.php';
-                include 'inc/acfcs-help-tabs.php';
-                // include 'inc/acfcs-i18n.php';
-                include 'inc/acfcs-ajax.php';
                 include 'inc/form-handling.php';
+                include 'inc/woocs-actions.php';
+                include 'inc/woocs-functions.php';
+                include 'inc/woocs-help-tabs.php';
+                include 'inc/woocs-i18n.php';
+                include 'inc/woocs-ajax.php';
                 include 'inc/woo-filters.php';
+                include 'inc/wp-actions.php';
 
                 // $this->l10n = acfcs_get_js_translations();
 
@@ -292,9 +292,9 @@
                 wp_enqueue_script( 'woocs-init' );
 
                 if ( is_admin() ) {
-                    wp_enqueue_style( 'acfcs-admin', plugins_url( 'assets/css/admin.css', __FILE__ ), [], $this->settings[ 'version' ] );
-                    wp_register_script( 'acfcs-admin', plugins_url( 'assets/js/upload-csv.js', __FILE__ ), [ 'jquery' ], $this->settings[ 'version' ] );
-                    wp_enqueue_script( 'acfcs-admin' );
+                    wp_enqueue_style( 'woocs-admin', plugins_url( 'assets/css/admin.css', __FILE__ ), [], $this->settings[ 'version' ] );
+                    wp_register_script( 'woocs-admin', plugins_url( 'assets/js/upload-csv.js', __FILE__ ), [ 'jquery' ], $this->settings[ 'version' ] );
+                    wp_enqueue_script( 'woocs-admin' );
                 }
             }
         }

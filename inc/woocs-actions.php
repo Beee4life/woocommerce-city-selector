@@ -6,10 +6,10 @@
      */
     function woocs_delete_transients( $country_code = false ) {
         if ( false != $country_code ) {
-            delete_transient( 'acfcs_states_' . strtolower( $country_code ) );
-            delete_transient( 'acfcs_cities_' . strtolower( $country_code ) );
+            delete_transient( 'woocs_states_' . strtolower( $country_code ) );
+            delete_transient( 'woocs_cities_' . strtolower( $country_code ) );
         } else {
-            delete_transient( 'acfcs_countries' );
+            delete_transient( 'woocs_countries' );
             $countries = woocs_get_countries( false, false, true );
             if ( ! empty( $countries ) ) {
                 foreach( $countries as $country_code => $label ) {

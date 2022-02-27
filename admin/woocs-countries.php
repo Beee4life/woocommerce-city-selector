@@ -38,15 +38,15 @@
         }
         ?>
 
-        <div class="wrap acfcs">
+        <div class="wrap woocs">
             <h1>Woocommerce City Selector</h1>
 
             <?php echo Woocommerce_City_Selector::woocs_admin_menu(); ?>
 
-            <div class="acfcs__container">
+            <div class="woocs__container">
                 <div class="admin_left">
                     <div class="content">
-                        <div class="acfcs__section acfcs__section--gopro">
+                        <div class="woocs__section woocs__section--gopro">
                             <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Get countries', 'woocommerce-city-selector' ) ); ?>
                             <?php echo sprintf( '<p>%s</p>', esc_html__( 'Default the plugin comes with 2 countries included, the Netherlands and Belgium but you might want to add more countries to choose from.', 'woocommerce-city-selector' ) ); ?>
                             <p>
@@ -55,12 +55,12 @@
                             </p>
                         </div>
 
-                        <div class="acfcs__section acfcs__section--packages">
+                        <div class="woocs__section woocs__section--packages">
                             <?php if ( is_array( $single_files ) && ! empty( $single_files ) ) { ?>
                                 <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Country files', 'woocommerce-city-selector' ) ); ?>
                                 <?php echo sprintf( '<div class="hide400">%s</div>', esc_html__( 'Rotate your phone for a better view or scroll the list horizontally.', 'woocommerce-city-selector' ) ); ?>
 
-                                <table class="acfcs__table acfcs__table--packages scrollable">
+                                <table class="woocs__table woocs__table--packages scrollable">
                                     <thead>
                                     <tr>
                                         <th colspan="2"><?php esc_html_e( 'Country', 'woocommerce-city-selector' ); ?></th>
@@ -92,7 +92,7 @@
                             <?php if ( is_array( $country_packages ) && ! empty( $country_packages ) ) { ?>
                                 <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Combined country packages', 'woocommerce-city-selector' ) ); ?>
 
-                                <table class="acfcs__table acfcs__table--packages">
+                                <table class="woocs__table woocs__table--packages">
                                     <thead>
                                     <tr>
                                         <?php echo sprintf( '<th>%s</th>', esc_html__( 'Package', 'woocommerce-city-selector' ) ); ?>

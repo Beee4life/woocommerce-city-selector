@@ -15,7 +15,7 @@
      */
     function woocs_get_countries( $show_first = true, $field = false, $force = false ) {
         $countries            = array();
-        $select_country_label = apply_filters( 'acfcs_select_country_label', esc_html__( 'Select a country', 'woocommerce-city-selector' ) );
+        $select_country_label = apply_filters( 'woocs_select_country_label', esc_html__( 'Select a country', 'woocommerce-city-selector' ) );
         $show_labels          = ( isset( $field[ 'show_labels' ] ) ) ? $field[ 'show_labels' ] : true;
 
         if ( $show_first ) {
@@ -25,7 +25,7 @@
             }
         }
 
-        $transient = get_transient( 'acfcs_countries' );
+        $transient = get_transient( 'woocs_countries' );
         if ( false != $force || false == $transient || is_array( $transient ) && empty( $transient ) ) {
             global $wpdb;
             $results = $wpdb->get_results( '
@@ -41,7 +41,7 @@
                 }
             }
 
-            set_transient( 'acfcs_countries', $country_results, DAY_IN_SECONDS );
+            set_transient( 'woocs_countries', $country_results, DAY_IN_SECONDS );
             $countries = array_merge( $countries, $country_results );
 
         } elseif ( is_array( $transient ) ) {
@@ -62,7 +62,7 @@
      * @return array
      */
     function woocs_get_states( $country_code = false, $show_first = true, $field = false ) {
-        $select_province_state_label = apply_filters( 'acfcs_select_province_state_label', esc_attr__( 'Select a province/state', 'woocommerce-city-selector' ) );
+        $select_province_state_label = apply_filters( 'woocs_select_province_state_label', esc_attr__( 'Select a province/state', 'woocommerce-city-selector' ) );
         $show_labels                 = ( isset( $field[ 'show_labels' ] ) ) ? $field[ 'show_labels' ] : true;
         $states                      = array();
 
@@ -75,7 +75,7 @@
         }
 
         if ( false != $country_code ) {
-            $transient = get_transient( 'acfcs_states_' . strtolower( $country_code ) );
+            $transient = get_transient( 'woocs_states_' . strtolower( $country_code ) );
             if ( false == $transient || is_array( $transient ) && empty( $transient ) ) {
                 $order = 'ORDER BY state_name ASC';
                 if ( 'FR' == $country_code ) {
@@ -97,7 +97,7 @@
                     $state_results[ $country_code . '-' . $data->state_code ] = esc_attr__( $data->state_name, 'woocommerce-city-selector' );
                 }
 
-                set_transient( 'acfcs_states_' . strtolower( $country_code ), $state_results, DAY_IN_SECONDS );
+                set_transient( 'woocs_states_' . strtolower( $country_code ), $state_results, DAY_IN_SECONDS );
 
                 $states = array_merge( $states, $state_results );
 
@@ -122,7 +122,7 @@
     function woocs_get_cities( $country_code = false, $state_code = false, $field = false ) {
         $cities            = array();
         $cities_transient  = false;
-        $select_city_label = apply_filters( 'acfcs_select_city_label', esc_attr__( 'Select a city', 'woocommerce-city-selector' ) );
+        $select_city_label = apply_filters( 'woocs_select_city_label', esc_attr__( 'Select a city', 'woocommerce-city-selector' ) );
         $set_transient     = false;
         $show_labels       = ( isset( $field[ 'show_labels' ] ) ) ? $field[ 'show_labels' ] : true;
 
@@ -133,9 +133,9 @@
         }
 
         if ( $country_code && ! $state_code ) {
-            $cities_transient = get_transient( 'acfcs_cities_' . strtolower( $country_code ) );
+            $cities_transient = get_transient( 'woocs_cities_' . strtolower( $country_code ) );
         } elseif ( $country_code && $state_code ) {
-            $cities_transient = get_transient( 'acfcs_cities_' . strtolower( $country_code ) . '-' . strtolower( $state_code ) );
+            $cities_transient = get_transient( 'woocs_cities_' . strtolower( $country_code ) . '-' . strtolower( $state_code ) );
         }
 
         if ( false == $cities_transient || empty( $cities_transient ) ) {
@@ -180,9 +180,9 @@
                     $cities = array_merge( $cities, $city_array );
                 }
                 if ( ! $state_code ) {
-                    set_transient( 'acfcs_cities_' . strtolower( $country_code ), $city_array, DAY_IN_SECONDS );
+                    set_transient( 'woocs_cities_' . strtolower( $country_code ), $city_array, DAY_IN_SECONDS );
                 } elseif ( $state_code ) {
-                    set_transient( 'acfcs_cities_' . strtolower( $country_code ) . '-' . strtolower( $state_code ), $city_array, DAY_IN_SECONDS );
+                    set_transient( 'woocs_cities_' . strtolower( $country_code ) . '-' . strtolower( $state_code ), $city_array, DAY_IN_SECONDS );
                 }
             }
         }
@@ -205,7 +205,7 @@
             if ( isset( $country->country ) ) {
                 return $country->country;
             } else {
-                $country_name = acfcs_country_i18n( $country_code );
+                $country_name = woocs_country_i18n( $country_code );
                 if ( $country_code != $country_name ) {
                     return $country_name;
                 }
@@ -287,7 +287,7 @@
             $column_benchmark = 5;
             $line_number      = 0;
 
-            while ( ( $csv_line = fgetcsv( $handle, apply_filters( 'acfcs_line_length', 1000 ), "{$delimiter}" ) ) !== false ) {
+            while ( ( $csv_line = fgetcsv( $handle, apply_filters( 'woocs_line_length', 1000 ), "{$delimiter}" ) ) !== false ) {
                 $line_number++;
                 $csv_array[ 'delimiter' ] = $delimiter;
 
@@ -296,7 +296,7 @@
                     // if column count < benchmark
                     if ( count( $csv_line ) < $column_benchmark ) {
                         $error_message = esc_html__( 'Since your file is not accurate anymore, the file is deleted.', 'woocommerce-city-selector' );
-                        ACF_City_Selector::acfcs_errors()->add( 'error_no_correct_columns_' . $line_number, sprintf( esc_html__( 'There are too few columns on line %d. %s', 'woocommerce-city-selector' ), $line_number, $error_message ) );
+                        Woocommerce_City_Selector::woocs_errors()->add( 'error_no_correct_columns_' . $line_number, sprintf( esc_html__( 'There are too few columns on line %d. %s', 'woocommerce-city-selector' ), $line_number, $error_message ) );
 
                     } elseif ( count( $csv_line ) > $column_benchmark ) {
                         // if column count > benchmark
@@ -304,11 +304,11 @@
                         if ( false === $verify ) {
                             $error_message = 'Lines 0-' . ( $line_number - 1 ) . ' are correctly imported but since your file is not accurate anymore, the file is deleted';
                         }
-                        ACF_City_Selector::acfcs_errors()->add( 'error_no_correct_columns_' . $line_number, sprintf( esc_html__( 'There are too many columns on line %d. %s', 'woocommerce-city-selector' ), $line_number, $error_message ) );
+                        Woocommerce_City_Selector::woocs_errors()->add( 'error_no_correct_columns_' . $line_number, sprintf( esc_html__( 'There are too many columns on line %d. %s', 'woocommerce-city-selector' ), $line_number, $error_message ) );
                     }
                 }
 
-                if ( ACF_City_Selector::acfcs_errors()->get_error_codes() ) {
+                if ( Woocommerce_City_Selector::woocs_errors()->get_error_codes() ) {
                     $empty_array = true;
                     $new_array   = array();
                 } else {
@@ -330,7 +330,7 @@
             }
             fclose( $handle );
 
-            if ( ACF_City_Selector::acfcs_errors()->get_error_codes() ) {
+            if ( Woocommerce_City_Selector::woocs_errors()->get_error_codes() ) {
                 // delete file
                 if ( file_exists( woocs_upload_folder( '/' ) . $file_name ) ) {
                     unlink( woocs_upload_folder( '/' ) . $file_name );
@@ -375,12 +375,12 @@
                 if ( count( $line_array ) != $column_benchmark ) {
                     // length of a line is not correct
                     if ( count( $line_array ) < $column_benchmark ) {
-                        ACF_City_Selector::acfcs_errors()->add( 'error_no_correct_columns', sprintf( esc_html__( 'There are too few columns on line %d.', 'woocommerce-city-selector' ), $line_number ) );
+                        Woocommerce_City_Selector::woocs_errors()->add( 'error_no_correct_columns', sprintf( esc_html__( 'There are too few columns on line %d.', 'woocommerce-city-selector' ), $line_number ) );
 
                         return false;
 
                     } elseif ( count( $line_array ) > $column_benchmark ) {
-                        ACF_City_Selector::acfcs_errors()->add( 'error_no_correct_columns', sprintf( esc_html__( 'There are too many columns on line %d.', 'woocommerce-city-selector' ), $line_number ) );
+                        Woocommerce_City_Selector::woocs_errors()->add( 'error_no_correct_columns', sprintf( esc_html__( 'There are too many columns on line %d.', 'woocommerce-city-selector' ), $line_number ) );
 
                         return false;
                     }
@@ -391,7 +391,7 @@
                     $column_counter++;
                     if ( $column_counter == 4 ) {
                         if ( 2 != strlen( $element ) ) {
-                            ACF_City_Selector::acfcs_errors()->add( 'error_wrong_country_length', sprintf( esc_html__( 'The length of the country abbreviation on line %d is incorrect.', 'woocommerce-city-selector' ), $line_number ) );
+                            Woocommerce_City_Selector::woocs_errors()->add( 'error_wrong_country_length', sprintf( esc_html__( 'The length of the country abbreviation on line %d is incorrect.', 'woocommerce-city-selector' ), $line_number ) );
 
                             return false;
                         }
@@ -439,7 +439,7 @@
                 ORDER BY country_code ASC
             ' );
 
-        $acfcs_info = array();
+        $woocs_info = array();
         foreach ( $results as $data ) {
             $country_code = $data->country_code;
             $results      = $wpdb->get_results( $wpdb->prepare( '
@@ -448,14 +448,14 @@
                 ORDER BY country_code ASC
             ', $country_code ) );
 
-            $acfcs_info[ $country_code ] = [
+            $woocs_info[ $country_code ] = [
                 'country_code' => $country_code,
                 'count'        => count( $results ),
                 'name'         => woocs_get_country_name( $country_code ),
             ];
         }
 
-        return $acfcs_info;
+        return $woocs_info;
     }
 
 
@@ -499,21 +499,21 @@
      * @return false|string
      */
     function woocs_render_dropdown( $type, $field, $stored_value, $prefill_values ) {
-        $acfcs_dropdown       = 'acfcs__dropdown';
-        $city_label           = apply_filters( 'acfcs_select_city_label', esc_attr__( 'Select a city', 'woocommerce-city-selector' ) );
+        $woocs_dropdown       = 'woocs__dropdown';
+        $city_label           = apply_filters( 'woocs_select_city_label', esc_attr__( 'Select a city', 'woocommerce-city-selector' ) );
         $countries            = woocs_get_countries( true, $field );
-        $country_label        = apply_filters( 'acfcs_select_country_label', esc_attr__( 'Select a country', 'woocommerce-city-selector' ) );
+        $country_label        = apply_filters( 'woocs_select_country_label', esc_attr__( 'Select a country', 'woocommerce-city-selector' ) );
         $default_country      = ( isset( $field[ 'default_country' ] ) && ! empty( $field[ 'default_country' ] ) ) ? $field[ 'default_country' ] : false;
         $default_value        = false;
         $field_id             = $field[ 'id' ];
         $field_name           = $field[ 'name' ];
         $prefill_cities       = $prefill_values[ 'prefill_cities' ];
         $prefill_states       = $prefill_values[ 'prefill_states' ];
-        $province_state_label = apply_filters( 'acfcs_select_province_state_label', esc_attr__( 'Select a province/state', 'woocommerce-city-selector' ) );
+        $province_state_label = apply_filters( 'woocs_select_province_state_label', esc_attr__( 'Select a province/state', 'woocommerce-city-selector' ) );
         $selected_selected    = ' selected="selected"';
         $show_labels          = ( isset( $field[ 'show_labels' ] ) ) ? $field[ 'show_labels' ] : true;
         $use_select2          = ( isset( $field[ 'use_select2' ] ) ) ? $field[ 'use_select2' ] : false;
-        $dropdown_class       = ( true == $use_select2 ) ? 'select2 ' . $acfcs_dropdown : $acfcs_dropdown;
+        $dropdown_class       = ( true == $use_select2 ) ? 'select2 ' . $woocs_dropdown : $woocs_dropdown;
         $data_label_value     = ( true == $show_labels ) ? '1' : '0';
         $which_fields         = ( isset( $field[ 'which_fields' ] ) ) ? $field[ 'which_fields' ] : 'all';
 
@@ -541,16 +541,11 @@
                 $values         = $prefill_cities;
                 break;
         }
-        $dropdown_class = $dropdown_class . ' ' . $acfcs_dropdown . '--' . $modifier;
+        $dropdown_class = $dropdown_class . ' ' . $woocs_dropdown . '--' . $modifier;
 
         ob_start();
         ?>
-        <div class="acfcs__dropdown-box acfcs__dropdown-box--<?php echo $modifier; ?>">
-            <?php if ( $show_labels ) { ?>
-                <div class="acf-input-header">
-                    <?php echo $field_label; ?>
-                </div>
-            <?php } ?>
+        <div class="woocs__dropdown-box woocs__dropdown-box--<?php echo $modifier; ?>">
             <label for="<?php echo $field_id . $field_suffix; ?>" class="screen-reader-text">
                 <?php echo $field_label; ?>
             </label>
@@ -588,7 +583,7 @@
     function woocs_verify_data( $file_name, $delimiter = ';', $verify = true ) {
         $csv_array = woocs_csv_to_array( $file_name, '', $delimiter, $verify );
         if ( isset( $csv_array[ 'data' ] ) ) {
-            ACF_City_Selector::acfcs_errors()->add( 'success_no_errors_in_csv', sprintf( esc_html__( 'Congratulations, there appear to be no errors in CSV file: "%s".', 'woocommerce-city-selector' ), $file_name ) );
+            Woocommerce_City_Selector::woocs_errors()->add( 'success_no_errors_in_csv', sprintf( esc_html__( 'Congratulations, there appear to be no errors in CSV file: "%s".', 'woocommerce-city-selector' ), $file_name ) );
             do_action( 'woocs_after_success_verify' );
         }
     }
@@ -627,9 +622,9 @@
                         }
                         if ( in_array( $file_name, [ 'be.csv', 'nl.csv' ] ) ) {
                             $country_code = substr( $file_name, 0, 2 );
-                            ACF_City_Selector::acfcs_errors()->add( 'success_lines_imported_' . $country_code, sprintf( esc_html__( 'You have successfully imported %d cities from "%s".', 'woocommerce-city-selector' ), $line_number, $file_name ) );
+                            Woocommerce_City_Selector::woocs_errors()->add( 'success_lines_imported_' . $country_code, sprintf( esc_html__( 'You have successfully imported %d cities from "%s".', 'woocommerce-city-selector' ), $line_number, $file_name ) );
                         } else {
-                            ACF_City_Selector::acfcs_errors()->add( 'success_lines_imported', sprintf( esc_html__( 'You have successfully imported %d cities from "%s".', 'woocommerce-city-selector' ), $line_number, $file_name ) );
+                            Woocommerce_City_Selector::woocs_errors()->add( 'success_lines_imported', sprintf( esc_html__( 'You have successfully imported %d cities from "%s".', 'woocommerce-city-selector' ), $line_number, $file_name ) );
                         }
 
                         do_action( 'woocs_after_success_import' );
@@ -654,12 +649,12 @@
 
                     $wpdb->insert( $wpdb->prefix . 'cities', $city_row );
                 }
-                ACF_City_Selector::acfcs_errors()->add( 'success_cities_imported', sprintf( _n( 'Congratulations, you imported 1 city.', 'Congratulations, you imported %d cities.', $line_number, 'woocommerce-city-selector' ), $line_number ) );
+                Woocommerce_City_Selector::woocs_errors()->add( 'success_cities_imported', sprintf( _n( 'Congratulations, you imported 1 city.', 'Congratulations, you imported %d cities.', $line_number, 'woocommerce-city-selector' ), $line_number ) );
 
                 do_action( 'woocs_after_success_import_raw' );
             }
         } else {
-            ACF_City_Selector::acfcs_errors()->add( 'error_no_file_selected', esc_html__( "You didn't select a file.", 'woocommerce-city-selector' ) );
+            Woocommerce_City_Selector::woocs_errors()->add( 'error_no_file_selected', esc_html__( "You didn't select a file.", 'woocommerce-city-selector' ) );
         }
 
     }
@@ -674,10 +669,10 @@
             if ( file_exists( woocs_upload_folder( '/' ) . $file_name ) ) {
                 $delete_result = unlink( woocs_upload_folder( '/' ) . $file_name );
                 if ( true === $delete_result ) {
-                    ACF_City_Selector::acfcs_errors()->add( 'success_file_deleted', sprintf( esc_html__( 'File "%s" successfully deleted.', 'woocommerce-city-selector' ), $file_name ) );
+                    Woocommerce_City_Selector::woocs_errors()->add( 'success_file_deleted', sprintf( esc_html__( 'File "%s" successfully deleted.', 'woocommerce-city-selector' ), $file_name ) );
                     do_action( 'woocs_after_success_file_delete' );
                 } else {
-                    ACF_City_Selector::acfcs_errors()->add( 'error_file_deleted', sprintf( esc_html__( 'File "%s" is not deleted. Please try again.', 'woocommerce-city-selector' ), $file_name ) );
+                    Woocommerce_City_Selector::woocs_errors()->add( 'error_file_deleted', sprintf( esc_html__( 'File "%s" is not deleted. Please try again.', 'woocommerce-city-selector' ), $file_name ) );
                 }
             }
         }
@@ -712,7 +707,7 @@
             $query          = "DELETE FROM {$wpdb->prefix}cities WHERE `country_code` IN ({$country_string})";
             $result         = $wpdb->query( $query );
             if ( $result > 0 ) {
-                ACF_City_Selector::acfcs_errors()->add( 'success_country_remove', sprintf( esc_html__( 'You have successfully removed all entries for %s.', 'woocommerce-city-selector' ), $country_names_and ) );
+                Woocommerce_City_Selector::woocs_errors()->add( 'success_country_remove', sprintf( esc_html__( 'You have successfully removed all entries for %s.', 'woocommerce-city-selector' ), $country_names_and ) );
                 foreach( $countries as $country_code ) {
                     do_action( 'woocs_delete_transients', $country_code );
                 }
@@ -771,7 +766,7 @@
 
             $table_rows = ob_get_clean();
             $table_body = sprintf( '<tbody>%s</tbody>', $table_rows );
-            $table      = sprintf( '<table class="acfcs__table acfcs__table--preview-result scrollable">%s%s</table>', $table_headers, $table_body );
+            $table      = sprintf( '<table class="woocs__table woocs__table--preview-result scrollable">%s%s</table>', $table_headers, $table_body );
 
             return $table;
         }
@@ -849,12 +844,12 @@
      */
     function woocs_get_searched_cities() {
         global $wpdb;
-        $search_criteria_state   = ( isset( $_POST[ 'acfcs_state' ] ) ) ? sanitize_text_field( $_POST[ 'acfcs_state' ] ) : false;
-        $search_criteria_country = ( isset( $_POST[ 'acfcs_country' ] ) ) ? sanitize_text_field( $_POST[ 'acfcs_country' ] ) : false;
+        $search_criteria_state   = ( isset( $_POST[ 'woocs_state' ] ) ) ? sanitize_text_field( $_POST[ 'woocs_state' ] ) : false;
+        $search_criteria_country = ( isset( $_POST[ 'woocs_country' ] ) ) ? sanitize_text_field( $_POST[ 'woocs_country' ] ) : false;
         $search_limit            = false;
-        $searched_orderby        = ( ! empty( $_POST[ 'acfcs_orderby' ] ) ) ? sanitize_text_field( $_POST[ 'acfcs_orderby' ] ) : false;
-        $searched_term           = ( ! empty( $_POST[ 'acfcs_search' ] ) ) ? sanitize_text_field( $_POST[ 'acfcs_search' ] ) : false;
-        $selected_limit          = ( ! empty( $_POST[ 'acfcs_limit' ] ) ) ? (int) $_POST[ 'acfcs_limit' ] : 100;
+        $searched_orderby        = ( ! empty( $_POST[ 'woocs_orderby' ] ) ) ? sanitize_text_field( $_POST[ 'woocs_orderby' ] ) : false;
+        $searched_term           = ( ! empty( $_POST[ 'woocs_search' ] ) ) ? sanitize_text_field( $_POST[ 'woocs_search' ] ) : false;
+        $selected_limit          = ( ! empty( $_POST[ 'woocs_limit' ] ) ) ? (int) $_POST[ 'woocs_limit' ] : 100;
         $where                   = array();
 
         if ( false != $search_criteria_state ) {
@@ -909,11 +904,11 @@
     function woocs_get_js_translations() {
         $translations = array(
             'no_countries'         => esc_attr__( 'No countries', 'woocommerce-city-selector' ),
-            'select_city'          => esc_attr( apply_filters( 'acfcs_select_city_label', __( 'Select a city', 'woocommerce-city-selector' ) ) ),
-            'select_country'       => esc_attr( apply_filters( 'acfcs_select_country_label', __( 'Select a country', 'woocommerce-city-selector' ) ) ),
-            'select_country_first' => esc_attr( apply_filters( 'acfcs_select_country_first', __( 'No results (yet), first select a country', 'woocommerce-city-selector' ) ) ),
-            'select_state'         => esc_attr( apply_filters( 'acfcs_select_province_state_label', __( 'Select a province/state', 'woocommerce-city-selector' ) ) ),
-            'select_state_first'   => esc_attr( apply_filters( 'acfcs_select_state_first', __( 'No results (yet), first select a state', 'woocommerce-city-selector' ) ) ),
+            'select_city'          => esc_attr( apply_filters( 'woocs_select_city_label', __( 'Select a city', 'woocommerce-city-selector' ) ) ),
+            'select_country'       => esc_attr( apply_filters( 'woocs_select_country_label', __( 'Select a country', 'woocommerce-city-selector' ) ) ),
+            'select_country_first' => esc_attr( apply_filters( 'woocs_select_country_first', __( 'No results (yet), first select a country', 'woocommerce-city-selector' ) ) ),
+            'select_state'         => esc_attr( apply_filters( 'woocs_select_province_state_label', __( 'Select a province/state', 'woocommerce-city-selector' ) ) ),
+            'select_state_first'   => esc_attr( apply_filters( 'woocs_select_state_first', __( 'No results (yet), first select a state', 'woocommerce-city-selector' ) ) ),
         );
 
         return $translations;

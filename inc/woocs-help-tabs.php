@@ -9,7 +9,7 @@
     function woocs_help_tabs( $screen ) {
 
         if ( isset( $screen->id ) ) {
-            if ( strpos( $screen->id, 'acfcs' ) !== false ) {
+            if ( strpos( $screen->id, 'woocs' ) !== false ) {
                 // @TODO: better rendering
                 $on_this_page = esc_html__( 'On this page you can import cities by either CSV file or raw (pasted) CSV data.', 'woocommerce-city-selector' );
                 $field_info = '<p>' . esc_html__( 'The required order is "City,State code,State,Country code,Country".', 'woocommerce-city-selector' ) . '</p>

@@ -6,11 +6,11 @@
      *
      * @param $country_code
      *
-     * @since 0.29.0
+     * @since 0.1
      *
      * @return mixed
      */
-    function acfcs_country_i18n( $country_code ) {
+    function woocs_country_i18n( $country_code ) {
 
         $country_array = array(
             'ad'     => esc_html__( 'Andorra', 'woocommerce-city-selector' ),

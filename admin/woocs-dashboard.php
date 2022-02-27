@@ -13,23 +13,23 @@
         $show_raw_import = true;
         ?>
 
-        <div class="wrap acfcs">
+        <div class="wrap woocs">
             <?php echo sprintf( '<h1>%s</h1>', get_admin_page_title() ); ?>
 
             <?php echo Woocommerce_City_Selector::woocs_admin_menu(); ?>
 
-            <div class="acfcs__container">
+            <div class="woocs__container">
                 <div class="admin_left">
                     <div class="content">
-                        <div class="acfcs__section acfcs__section--upload-csv">
+                        <div class="woocs__section woocs__section--upload-csv">
                             <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Upload a CSV file', 'woocommerce-city-selector' ) ); ?>
                             <?php include 'upload-file-form.php'; ?>
                         </div>
 
                         <?php
-                            $file_index = acfcs_check_if_files();
+                            $file_index = woocs_check_if_files();
                             if ( ! empty( $file_index ) ) { ?>
-                                <div class="acfcs__section acfcs__section--process-file">
+                                <div class="woocs__section woocs__section--process-file">
                                     <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Select a file to import', 'woocommerce-city-selector' ) ); ?>
                                     <?php echo sprintf( '<p><small>%s</small></p>', esc_html__( 'Max lines has no effect when verifying. The entire file will be checked.', 'woocommerce-city-selector' ) ); ?>
                                     <?php include 'process-file-form.php'; ?>
@@ -39,7 +39,7 @@
                         <?php if ( true === $show_raw_import ) { ?>
                             <?php $placeholder = "Amsterdam;NH;Noord-Holland;NL;Netherlands\nRotterdam;ZH;Zuid-Holland;NL;Netherlands"; ?>
                             <?php $submitted_raw_data = ( isset( $_POST[ 'raw_csv_import' ] ) ) ? sanitize_textarea_field( $_POST[ 'raw_csv_import' ] ) : false; ?>
-                            <div class="acfcs__section acfcs__section--raw-import">
+                            <div class="woocs__section woocs__section--raw-import">
                                 <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Import CSV data (from clipboard)', 'woocommerce-city-selector' ) ); ?>
                                 <p>
                                     <?php esc_html_e( 'Here you can paste CSV data from your clipboard.', 'woocommerce-city-selector' ); ?>

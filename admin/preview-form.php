@@ -7,10 +7,10 @@
 <p><?php esc_html_e( 'Here you can preview any uploaded csv files.', 'woocommerce-city-selector' ); ?></p>
 <p><?php esc_html_e( 'Please keep in mind that all csv files are verified before displaying (and therefor can be deleted, when errors are encountered).', 'woocommerce-city-selector' ); ?></p>
 
-<div class="acfcs__section acfcs__section--preview">
+<div class="woocs__section woocs__section--preview">
     <form name="select-preview-file" id="settings-form" action="" method="post">
-        <div class="acfcs__process-file">
-            <div class="acfcs__process-file-element">
+        <div class="woocs__process-file">
+            <div class="woocs__process-file-element">
                 <?php echo sprintf( '<label for="woocs_file_name">%s</label>', esc_attr__( 'File', 'woocommerce-city-selector' ) ); ?>
                 <select name="woocs_file_name" id="woocs_file_name">
                     <?php if ( count( $file_index ) > 1 ) { ?>
@@ -23,7 +23,7 @@
                 </select>
             </div>
 
-            <div class="acfcs__process-file-element">
+            <div class="woocs__process-file-element">
                 <?php $delimiters = [ ';', ',', '|' ]; ?>
                 <?php echo sprintf( '<label for="woocs_delimiter">%s</label>', esc_attr__( 'Delimiter', 'woocommerce-city-selector' ) ); ?>
                 <select name="woocs_delimiter" id="woocs_delimiter">
@@ -34,7 +34,7 @@
                 </select>
             </div>
 
-            <div class="acfcs__process-file-element">
+            <div class="woocs__process-file-element">
                 <?php echo sprintf( '<label for="woocs_max_lines">%s</label>', esc_attr__( 'Max lines', 'woocommerce-city-selector' ) ); ?>
                 <input type="number" name="woocs_max_lines" id="woocs_max_lines" value="<?php echo $max_lines_value; ?>" />
             </div>

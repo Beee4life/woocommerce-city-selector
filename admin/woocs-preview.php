@@ -11,7 +11,7 @@
         Woocommerce_City_Selector::woocs_show_admin_notices();
         ?>
 
-        <div class="wrap acfcs">
+        <div class="wrap woocs">
             <h1>Woocommerce City Selector</h1>
 
             <?php echo Woocommerce_City_Selector::woocs_admin_menu(); ?>
@@ -30,7 +30,7 @@
                 }
             ?>
 
-            <div class="acfcs__container">
+            <div class="woocs__container">
                 <div class="admin_left">
                     <div class="content">
                         <?php if ( ! empty( $file_index ) ) { ?>
@@ -45,7 +45,7 @@
 
                         <?php
                             if ( $file_name ) {
-                                echo '<div class="acfcs__section acfcs__section--results">';
+                                echo '<div class="woocs__section woocs__section--results">';
                                 if ( array_key_exists( 'error', $csv_info ) ) {
                                     if ( 'file_deleted' == $csv_info[ 'error' ] ) {
                                         $dismiss_button = sprintf( '<button type="button" class="notice-dismiss"><span class="screen-reader-text">%s</span></button>', esc_html__( 'Dismiss this notice', 'woocommerce-city-selector' ) );

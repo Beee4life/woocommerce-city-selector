@@ -1,0 +1,446 @@
+/*
+ * CSS for the Woocommerce City Selector plugin
+ */
+
+/* admin menu */
+.woocs .woocs-admin-menu a {
+  text-decoration: none;
+}
+
+.woocs .woocs-admin-menu a.current_page {
+  font-weight: bold;
+}
+
+.woocs .woocs-admin-menu a.cta {
+  color:       #dc3232;
+  font-weight: bold;
+}
+
+/* admin pages */
+.woocs .admin_left .content,
+.woocs .admin_right .content {
+  background:            white;
+  box-sizing:            border-box;
+  border:                1px solid #cccccc;
+  padding:               10px;
+  -moz-border-radius:    8px;
+  -webkit-border-radius: 8px;
+}
+
+.woocs .admin_left {
+  margin-bottom: 1rem;
+}
+
+.woocs h2,
+.woocs h3 {
+  margin:        0;
+  margin-bottom: 1rem;
+}
+
+.woocs__section {
+  border-top:  1px solid #cccccc;
+  margin-top:  1.5em;
+  padding-top: 1.5em;
+}
+
+.woocs__section:first-child {
+  border-top:     0;
+  margin-top:     0;
+  padding-top:    0;
+  padding-bottom: 0;
+}
+
+.woocs__section--subscription {
+  padding-bottom: 0;
+}
+
+.woocs__section--results {
+  margin-top: 2em;
+}
+
+.woocs__section--export p.json_button {
+  vertical-align: middle;
+}
+
+.woocs__section input[type="submit"] + input[type="submit"] {
+  margin-left: 10px;
+}
+
+
+.woocs__search-form {
+  display:   flex;
+  flex-flow: row wrap;
+}
+
+.woocs__search-criteria {
+  margin-bottom: 0.75rem;
+}
+
+.woocs__search-criteria:last-child {
+  margin-bottom: 0;
+}
+
+.woocs__search-criteria--orderby {
+  margin-right: 1.25em;
+}
+
+.woocs__search-criteria--or,
+.woocs__search-criteria--plus {
+  margin:      0 0.5em;
+  padding-top: 5px;
+}
+
+/* tables */
+.woocs table.woocs__table {
+  border:          0;
+  border-spacing:  0;
+  border-collapse: collapse;
+  width:           100%;
+  max-width:       100%;
+}
+
+.woocs table.woocs__table--packages {
+  margin-top:    1rem;
+  margin-bottom: 1rem;
+}
+
+.woocs table.woocs__table--packages img.flag {
+  border:       1px solid #222;
+  margin-right: 0.5rem;
+}
+
+.woocs table.woocs__table--info {
+  margin-bottom: 2em;
+  max-width:     450px;
+}
+
+.woocs table.woocs__table--search {
+  margin-top:    1em;
+  margin-bottom: 1em;
+}
+
+.woocs table.woocs__table th,
+.woocs table.woocs__table td {
+  padding:    5px 0.5em 5px 0;
+  text-align: left;
+}
+
+.woocs table.woocs__table td {
+  border-top: 1px solid #444444;
+}
+
+.woocs table.woocs__table--search tr td:nth-child(1),
+.woocs table.woocs__table--search tr td:nth-child(2) {
+  width: 60px;
+}
+
+/* forms */
+.woocs .upload-element {
+  margin-bottom: 1rem;
+}
+
+.woocs .upload-element:last-child {
+  margin-bottom: 0;
+}
+
+.woocs .form--upload {
+  margin-top: 5px;
+  position:   relative;
+}
+
+.woocs .form--upload .val {
+  background:     white;
+  border:         1px solid #ccc;
+  width:          185px;
+  height:         35px;
+  position:       absolute;
+  top:            0;
+  left:           0;
+  font-size:      15px;
+  line-height:    35px;
+  text-indent:    10px;
+  pointer-events: none;
+  overflow:       hidden;
+}
+
+.woocs .form--upload .upload_button {
+  border-radius: 0;
+  display:       block;
+  height:        37px;
+  left:          185px;
+  position:      absolute;
+  top:           0;
+  font-size:     15px;
+  line-height:   35px;
+  text-align:    center;
+}
+
+.woocs .woocs__process-file-element {
+  margin-bottom: 0.5rem;
+}
+
+.woocs label {
+  font-weight: bold;
+}
+
+.woocs .woocs__process-file-element label {
+  display: inline-block;
+  width:   80px;
+}
+
+/* form inputs */
+.woocs .form--upload input[type='file'] {
+  width:   185px;
+  height:  35px;
+  opacity: 0;
+}
+
+.woocs__search-criteria--search input {
+  border:        1px solid #7e8993;
+  border-radius: 3px;
+  box-sizing:    border-box;
+  color:         #32373c;
+  margin:        0;
+}
+
+.woocs input[name="woocs_limit"],
+.woocs input[name="woocs_max_lines"] {
+  width: 80px;
+}
+
+.woocs input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.woocs textarea#raw-import {
+  width:         100%;
+  max-width:     100%;
+  margin-bottom: 1rem;
+}
+
+/* misc */
+.woocs hr {
+  background:    #CCCCCC;
+  width:         100%;
+  height:        1px;
+  border:        0;
+  margin-bottom: 1em;
+}
+
+.woocs img.woocs__donate {
+  margin-left: 10px;
+}
+
+.woocs .admin_right .paypal_button {
+  display:       flex;
+  flex-flow:     row nowrap;
+  align-content: space-between;
+}
+
+/* help menus */
+.contextual-help-tabs {
+  width: 170px;
+}
+
+#contextual-help-back {
+  left: 170px;
+}
+
+#contextual-help-columns .contextual-help-tabs-wrap h5 {
+  -webkit-margin-before: 0;
+  -webkit-margin-after:  0;
+  margin-bottom:         0.5em;
+}
+
+#contextual-help-columns .contextual-help-tabs-wrap h5:first-child {
+  -webkit-margin-before: 0.75em;
+}
+
+#contextual-help-columns .contextual-help-tabs-wrap p {
+  -webkit-margin-before: 0;
+  margin:                0.5em 0 0.5em 0;
+}
+
+#contextual-help-columns .contextual-help-sidebar p {
+  -webkit-margin-before: 0;
+  margin:                1em 0 0.5em 0;
+}
+
+#contextual-help-columns .contextual-help-tabs-wrap table {
+  border-spacing: 0;
+}
+
+#contextual-help-columns .contextual-help-tabs-wrap th,
+#contextual-help-columns .contextual-help-tabs-wrap td {
+  padding: 5px 0.5em 5px 0;
+}
+
+#contextual-help-columns .contextual-help-tabs-wrap th {
+  text-align: left;
+}
+
+#contextual-help-columns .contextual-help-tabs-wrap td {
+  border-top: 1px solid #444444;
+}
+
+.hide568 {
+  font-size: small;
+}
+
+/* media queries */
+@media screen and (min-width: 400px) {
+  .hide400 {
+    display: none;
+  }
+}
+
+@media screen and ( min-width: 480px ) {
+  .hide480 {
+    display: none;
+  }
+
+  .woocs .admin_left .content,
+  .woocs .admin_right .content {
+    padding: 20px;
+  }
+
+  .woocs .form--upload input[type='file'] {
+    width:  350px;
+    height: 35px;
+  }
+
+  .woocs .form--upload .val {
+    width: 350px;
+  }
+
+  .woocs .form--upload .upload_button {
+    left: 350px;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .woocs table.woocs__table--packages.scrollable {
+    display:     block;
+    overflow:    hidden;
+    white-space: nowrap;
+    overflow-x:  scroll;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .woocs table.woocs__table--search.scrollable {
+    display:     block;
+    overflow:    hidden;
+    white-space: nowrap;
+    overflow-x:  scroll;
+  }
+}
+
+@media screen and (min-width: 568px) {
+  .hide568 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .woocs table.woocs__table--preview-result.scrollable {
+    display:     block;
+    overflow:    hidden;
+    white-space: nowrap;
+    overflow-x:  scroll;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hide640 {
+    display: none;
+  }
+
+  .admin_right .paypal_button {
+    margin-bottom: 2.5em;
+  }
+
+  .woocs .woocs__process-file {
+    display:   flex;
+    flex-flow: row nowrap;
+  }
+
+  .woocs .woocs__process-file-element {
+    margin-right: 2rem;
+  }
+
+  .woocs .woocs__process-file-element label {
+    display: block;
+  }
+
+  .woocs .woocs__process-file-element--file {
+    min-width: 130px;
+  }
+}
+
+/* screensize used in WP forms.css */
+@media screen and (max-width: 782px) {
+  .woocs__search-criteria--or,
+  .woocs__search-criteria--plus {
+    margin:      0 0.5em;
+    padding-top: 10px;
+  }
+
+  .woocs__checkboxes li {
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .admin_right .paypal_button {
+    margin-bottom: initial;
+  }
+
+  .woocs table.woocs__table--search {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .woocs__container {
+    display:         flex;
+    flex-flow:       row nowrap;
+    justify-content: space-between;
+  }
+
+  .woocs .admin_left {
+    margin-bottom: 0;
+    width:         70%;
+  }
+
+  .woocs .admin_right {
+    max-width: 28%;
+  }
+
+  .woocs table.woocs__table--preview-result {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .woocs .admin_left {
+    width: 73%;
+  }
+
+  .woocs .admin_right {
+    max-width: 25%;
+  }
+
+  .woocs__search-criteria {
+    margin-bottom: 0;
+  }
+
+  .woocs table.woocs__table--search {
+    max-width: 60%;
+  }
+
+  .woocs table.woocs__table--packages {
+    max-width: 80%;
+  }
+}

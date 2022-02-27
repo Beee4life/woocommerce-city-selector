@@ -4,7 +4,7 @@
     }
 ?>
 <form enctype="multipart/form-data" method="post">
-    <input name="acfcs_upload_csv_nonce" type="hidden" value="<?php echo wp_create_nonce( 'acfcs-upload-csv-nonce' ); ?>" />
+    <input name="woocs_upload_csv_nonce" type="hidden" value="<?php echo wp_create_nonce( 'woocs-upload-csv-nonce' ); ?>" />
     <input type="hidden" name="MAX_FILE_SIZE" value="1024000" />
 
     <div class="upload-element">

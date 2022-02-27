@@ -45,12 +45,12 @@
             $result_count = count( $city_array );
         }
         ?>
-        <div class="wrap acfcs">
+        <div class="wrap woocs">
             <h1>Woocommerce City Selector</h1>
 
             <?php echo Woocommerce_City_Selector::woocs_admin_menu(); ?>
 
-            <div class="acfcs__container">
+            <div class="woocs__container">
                 <div class="admin_left">
                     <div class="content">
                         <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Search for cities', 'woocommerce-city-selector' ) ); ?>
@@ -59,10 +59,10 @@
                             <form action="" method="POST">
                                 <input name="woocs_search_form" type="hidden" value="1" />
 
-                                <div class="acfcs__search-form">
+                                <div class="woocs__search-form">
                                     <?php // if there's only 1 country, no need to add country dropdown ?>
                                     <?php if ( count( $countries ) > 1 ) { ?>
-                                        <div class="acfcs__search-criteria acfcs__search-criteria--country">
+                                        <div class="woocs__search-criteria woocs__search-criteria--country">
                                             <label for="woocs_country" class="screen-reader-text"><?php echo apply_filters( 'woocs_select_country_label', esc_html__( 'Select a country', 'woocommerce-city-selector' ) ); ?></label>
                                             <select name="woocs_country" id="woocs_country">
                                                 <option value="">
@@ -77,12 +77,12 @@
                                             </select>
                                         </div>
 
-                                        <div class="acfcs__search-criteria acfcs__search-criteria--or">
+                                        <div class="woocs__search-criteria woocs__search-criteria--or">
                                             <small><?php esc_html_e( 'OR', 'woocommerce-city-selector' ); ?></small>
                                         </div>
                                     <?php } ?>
 
-                                    <div class="acfcs__search-criteria acfcs__search-criteria--state">
+                                    <div class="woocs__search-criteria woocs__search-criteria--state">
                                         <label for="woocs_state" class="screen-reader-text">
                                             <?php echo apply_filters( 'woocs_select_province_state_label', esc_html__( 'Select a province/state', 'woocommerce-city-selector' ) ); ?>
                                         </label>
@@ -107,23 +107,23 @@
                                         </select>
                                     </div>
 
-                                    <div class="acfcs__search-criteria acfcs__search-criteria--plus">+</div>
+                                    <div class="woocs__search-criteria woocs__search-criteria--plus">+</div>
 
-                                    <div class="acfcs__search-criteria acfcs__search-criteria--search">
+                                    <div class="woocs__search-criteria woocs__search-criteria--search">
                                         <?php echo sprintf( '<label for="woocs_search" class="screen-reader-text">%s</label>', esc_attr__( 'Search term', 'woocommerce-city-selector' ) ); ?>
                                         <input name="woocs_search" id="woocs_search" type="text" value="<?php if ( false != $searched_term ) { echo stripslashes( $searched_term ); } ?>" placeholder="<?php esc_html_e( 'City name', 'woocommerce-city-selector' ); ?>">
                                     </div>
 
-                                    <div class="acfcs__search-criteria acfcs__search-criteria--plus">+</div>
+                                    <div class="woocs__search-criteria woocs__search-criteria--plus">+</div>
 
-                                    <div class="acfcs__search-criteria acfcs__search-criteria--limit">
+                                    <div class="woocs__search-criteria woocs__search-criteria--limit">
                                         <?php echo sprintf( '<label for="woocs_limit" class="screen-reader-text">%s</label>', esc_attr__( 'Limit', 'woocommerce-city-selector' ) ); ?>
                                         <input name="woocs_limit" id="woocs_limit" type="number" value="<?php if ( false != $selected_limit ) { echo $selected_limit; } ?>" placeholder="<?php esc_html_e( 'Limit', 'woocommerce-city-selector' ); ?>">
                                     </div>
 
-                                    <div class="acfcs__search-criteria acfcs__search-criteria--plus">+</div>
+                                    <div class="woocs__search-criteria woocs__search-criteria--plus">+</div>
 
-                                    <div class="acfcs__search-criteria acfcs__search-criteria--orderby">
+                                    <div class="woocs__search-criteria woocs__search-criteria--orderby">
                                         <?php echo sprintf( '<label for="woocs_orderby" class="screen-reader-text">%s</label>', esc_attr__( 'Order by', 'woocommerce-city-selector' ) ); ?>
                                         <select name="woocs_orderby" id="woocs_orderby">
                                             <option value="">
@@ -142,7 +142,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="acfcs__search-criteria acfcs__search-criteria--submit">
+                                    <div class="woocs__search-criteria woocs__search-criteria--submit">
                                         <input type="submit" class="button button-primary" value="<?php esc_html_e( 'Search', 'woocommerce-city-selector' ); ?>" />
                                     </div>
                                 </div>
@@ -158,7 +158,7 @@
                         <?php } elseif ( ! empty( $cities ) ) { ?>
                             <form enctype="multipart/form-data" action="" method="POST">
                                 <input name="woocs_delete_row_nonce" type="hidden" value="<?php echo wp_create_nonce( 'woocs-delete-row-nonce' ); ?>" />
-                                <div class="acfcs__search-results">
+                                <div class="woocs__search-results">
                                     <?php echo sprintf( '<p class="hide568">%s</p>', __( 'Table scrolls horizontally.', 'woocommerce-city-selector' ) ); ?>
                                     <?php echo sprintf( '<p>%d %s</p>', $result_count, _n( 'result',  'results', $result_count, 'woocommerce-city-selector' ) ); ?>
                                     <?php
@@ -171,7 +171,7 @@
                                         ];
                                     ?>
 
-                                    <table class="acfcs__table acfcs__table--search scrollable">
+                                    <table class="woocs__table woocs__table--search scrollable">
                                         <thead>
                                         <tr>
                                             <?php foreach( $table_headers as $column ) { ?>

@@ -10,19 +10,19 @@
 
         Woocommerce_City_Selector::woocs_show_admin_notices();
 
-        $countries    = acfcs_get_countries_info();
+        $countries    = woocs_get_countries_info();
         $prepare_json = array();
         ?>
 
-        <div class="wrap acfcs">
+        <div class="wrap woocs">
             <h1>Woocommerce City Selector</h1>
 
             <?php echo Woocommerce_City_Selector::woocs_admin_menu(); ?>
 
-            <div class="acfcs__container">
+            <div class="woocs__container">
                 <div class="admin_left">
                     <div class="content">
-                        <div class="acfcs__section">
+                        <div class="woocs__section">
                             <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Info', 'woocommerce-city-selector' ) ); ?>
                             <p>
                                 <?php esc_html_e( 'This page shows real-time info about your site and settings.', 'woocommerce-city-selector' ); ?>
@@ -31,11 +31,11 @@
                             </p>
                         </div>
 
-                        <div class="acfcs__section acfcs__section--countries">
+                        <div class="woocs__section woocs__section--countries">
                             <?php if ( ! empty( $countries ) ) { ?>
                                 <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Countries in database', 'woocommerce-city-selector' ) ); ?>
 
-                                <table class="acfcs__table acfcs__table--info">
+                                <table class="woocs__table woocs__table--info">
                                     <thead>
                                     <tr>
                                         <th><?php esc_html_e( 'Country name', 'woocommerce-city-selector' ); ?></th>
@@ -58,7 +58,7 @@
 
                             <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Server info', 'woocommerce-city-selector' ) ); ?>
 
-                            <table class="acfcs__table acfcs__table--info">
+                            <table class="woocs__table woocs__table--info">
                                 <thead>
                                 <tr>
                                     <th><?php esc_html_e( 'What ?', 'woocommerce-city-selector' ); ?></th>
@@ -101,7 +101,7 @@
 
                             <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Wordpress info', 'woocommerce-city-selector' ) ); ?>
 
-                            <table class="acfcs__table acfcs__table--info">
+                            <table class="woocs__table woocs__table--info">
                                 <thead>
                                 <tr>
                                     <th><?php esc_html_e( 'What ?', 'woocommerce-city-selector' ); ?></th>
@@ -160,7 +160,7 @@
                             <?php if ( is_multisite() ) { ?>
                                 <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Multisite', 'woocommerce-city-selector' ) ); ?>
 
-                                <table class="acfcs__table acfcs__table--info">
+                                <table class="woocs__table woocs__table--info">
                                     <thead>
                                     <tr>
                                         <th><?php esc_html_e( 'What ?', 'woocommerce-city-selector' ); ?></th>
@@ -196,7 +196,7 @@
 
                             <?php $plugins = get_plugins(); ?>
                             <?php if ( ! empty( $plugins ) ) { ?>
-                                <table class="acfcs__table acfcs__table--info">
+                                <table class="woocs__table woocs__table--info">
                                     <thead>
                                     <tr>
                                         <th><?php esc_html_e( 'Name', 'woocommerce-city-selector' ); ?></th>
@@ -218,8 +218,8 @@
                             <?php } ?>
                         </div>
 
-                        <?php $file_name = acfcs_upload_folder( '/' ) . 'debug.json'; ?>
-                        <div class="acfcs__section acfcs__section--export">
+                        <?php $file_name = woocs_upload_folder( '/' ) . 'debug.json'; ?>
+                        <div class="woocs__section woocs__section--export">
                             <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Download JSON', 'woocommerce-city-selector' ) ); ?>
                             <p>
                                 <?php esc_html_e( "If you're in need of support, the info above might helpful for us to fix a problem.", 'woocommerce-city-selector' ); ?>
@@ -232,7 +232,7 @@
                                 <?php $serialized_json = json_encode( $prepare_json ); // encode json before saving ?>
                                 <?php file_put_contents( $file_name, $serialized_json ); // write to file ?>
                                 <p class="json_button">
-                                    <a href="<?php echo wp_upload_dir()['baseurl'] . '/acfcs/debug.json'; ?>" class="button button-primary">
+                                    <a href="<?php echo wp_upload_dir()['baseurl'] . '/woocs/debug.json'; ?>" class="button button-primary">
                                         <?php esc_attr_e( 'View JSON file', 'woocommerce-city-selector' ); ?>
                                     </a> <small>(<?php _e( 'left-click to open, right-click to save', 'woocommerce-city-selector' ); ?>)</small>
                                 </p>

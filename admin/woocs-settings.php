@@ -12,19 +12,19 @@
         Woocommerce_City_Selector::woocs_show_admin_notices();
         ?>
 
-        <div class="wrap acfcs">
+        <div class="wrap woocs">
             <h1>Woocommerce City Selector</h1>
 
             <?php echo Woocommerce_City_Selector::woocs_admin_menu(); ?>
 
-            <div class="acfcs__container">
+            <div class="woocs__container">
                 <div class="admin_left">
                     <div class="content">
                         <form method="post" action="">
                             <input name="woocs_import_actions_nonce" value="<?php echo wp_create_nonce( 'woocs-import-actions-nonce' ); ?>" type="hidden" />
                             <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Import countries', 'woocommerce-city-selector' ) ); ?>
                             <?php echo sprintf( '<p>%s</p>', esc_html__( 'Here you can (re-)import all cities for the individual countries listed below.', 'woocommerce-city-selector' ) ); ?>
-                            <ul class="acfcs__checkboxes">
+                            <ul class="woocs__checkboxes">
                                 <li>
                                     <?php echo sprintf( '<label for="import_be" class="screen-reader-text">%s</label>', esc_attr__( 'Import all cities in Belgium', 'woocommerce-city-selector' ) ); ?>
                                     <input type="checkbox" name="woocs_import_be" id="import_be" value="1" /> <?php esc_html_e( 'Import all cities in Belgium', 'woocommerce-city-selector' ); ?> (1166)
@@ -45,7 +45,7 @@
                             <form method="post" action="">
                                 <input name="woocs_remove_countries_nonce" value="<?php echo wp_create_nonce( 'woocs-remove-countries-nonce' ); ?>" type="hidden" />
                                 <?php echo sprintf( '<p>%s</p>', esc_html__( "Here you can remove a country and all its states and cities from the database.", 'woocommerce-city-selector' ) ); ?>
-                                <ul class="acfcs__checkboxes">
+                                <ul class="woocs__checkboxes">
                                     <?php foreach( $countries as $key => $value ) { ?>
                                         <li>
                                             <?php echo sprintf( '<label for="%s" class="screen-reader-text">%s</label>', 'delete_' . strtolower( $key ), esc_attr__( $value, 'woocommerce-city-selector' ) ); ?>
@@ -84,7 +84,7 @@
                             <?php $checked = get_option( 'woocs_delete_cities_table' ) ? ' checked="checked"' : false; ?>
                             <ul>
                                 <li>
-                                    <span class="acfcs_input">
+                                    <span class="woocs_input">
                                         <?php echo sprintf( '<label for="remove_cities_table" class="screen-reader-text">%s</label>', esc_attr__( 'Remove cities table on plugin deletion', 'woocommerce-city-selector' ) ); ?>
                                         <input type="checkbox" name="remove_cities_table" id="remove_cities_table" value="1" <?php echo $checked; ?>/> <?php esc_html_e( 'Remove cities table on plugin deletion', 'woocommerce-city-selector' ); ?>
                                     </span>
