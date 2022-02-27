@@ -64,8 +64,6 @@
                 include 'inc/woo-filters.php';
                 include 'inc/wp-actions.php';
 
-                // $this->l10n = acfcs_get_js_translations();
-
                 // admin pages
                 include 'admin/woocs-dashboard.php';
                 include 'admin/woocs-preview.php';
@@ -286,7 +284,7 @@
              * Adds CSS on the admin side
              */
             public function woocs_add_scripts() {
-                // wp_enqueue_style( 'acfcs-general', plugins_url( 'assets/css/general.css', __FILE__ ), [], $this->settings[ 'version' ] );
+                wp_enqueue_style( 'woocs-general', plugins_url( 'assets/css/general.css', __FILE__ ), [], $this->settings[ 'version' ] );
 
                 wp_register_script( 'woocs-init', plugins_url( 'assets/js/init.js', __FILE__ ), [ 'jquery', 'woocommerce' ], $this->settings[ 'version' ] );
                 wp_enqueue_script( 'woocs-init' );
