@@ -23,9 +23,7 @@ Welcome to the Woocommerce City Selector plugin, which is an extension for the [
 <a name="description"></a>
 ### Description
 
-This plugin allows you to select a city, based on country and province/state in an ACF Field.
-
-![Screenshot Woocommerce City Selector](https://beee4life.github.io/images/screenshot-acf-city-selector.png)
+This plugin allows you to select a city, based on country and province/state on a Woocommerce address field (checkout and account).
 
 <a name="impact"></a>
 ### Impact
