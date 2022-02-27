@@ -8,9 +8,9 @@
                 Woocommerce_City_Selector::woocs_errors()->add( 'error_no_nonce_match', esc_html__( 'Something went wrong, please try again.', 'woocommerce-city-selector' ) );
             } else {
                 Woocommerce_City_Selector::woocs_check_uploads_folder();
-                $target_file = woocs_upload_folder( '/' ) . basename( $_FILES[ 'csv_upload' ][ 'name' ] );
-                if ( move_uploaded_file( $_FILES[ 'csv_upload' ][ 'tmp_name' ], $target_file ) ) {
-                    Woocommerce_City_Selector::woocs_errors()->add( 'success_file_uploaded', sprintf( esc_html__( "File '%s' is successfully uploaded and now shows under 'Select files to import'", 'woocommerce-city-selector' ), $_FILES[ 'csv_upload' ][ 'name' ] ) );
+                $target_file = woocs_upload_folder( '/' ) . basename( $_FILES[ 'woocs_csv_upload' ][ 'name' ] );
+                if ( move_uploaded_file( $_FILES[ 'woocs_csv_upload' ][ 'tmp_name' ], $target_file ) ) {
+                    Woocommerce_City_Selector::woocs_errors()->add( 'success_file_uploaded', sprintf( esc_html__( "File '%s' is successfully uploaded and now shows under 'Select files to import'", 'woocommerce-city-selector' ), $_FILES[ 'woocs_csv_upload' ][ 'name' ] ) );
                     do_action( 'woocs_after_success_file_upload' );
                 } else {
                     Woocommerce_City_Selector::woocs_errors()->add( 'error_file_uploaded', esc_html__( 'Upload failed. Please try again.', 'woocommerce-city-selector' ) );
@@ -29,18 +29,18 @@
             if ( ! wp_verify_nonce( $_POST[ 'woocs_select_file_nonce' ], 'woocs-select-file-nonce' ) ) {
                 Woocommerce_City_Selector::woocs_errors()->add( 'error_nonce_no_match', esc_html__( 'Something went wrong, please try again.', 'woocommerce-city-selector' ) );
             } else {
-                if ( empty( $_POST[ 'acfcs_file_name' ] ) ) {
+                if ( empty( $_POST[ 'woocs_file_name' ] ) ) {
                     Woocommerce_City_Selector::woocs_errors()->add( 'error_no_file_selected', esc_html__( "You didn't select a file.", 'woocommerce-city-selector' ) );
 
                     return;
                 }
 
-                $file_name = $_POST[ 'acfcs_file_name' ];
-                $delimiter = ! empty( $_POST[ 'acfcs_delimiter' ] ) ? sanitize_text_field( $_POST[ 'acfcs_delimiter' ] ) : apply_filters( 'acfcs_delimiter', ';' );
-                $import    = isset( $_POST[ 'acfcs_import' ] ) ? true : false;
-                $max_lines = isset( $_POST[ 'acfcs_max_lines' ] ) ? (int) $_POST[ 'acfcs_max_lines' ] : false;
-                $remove    = isset( $_POST[ 'acfcs_remove' ] ) ? true : false;
-                $verify    = isset( $_POST[ 'acfcs_verify' ] ) ? true : false;
+                $file_name = $_POST[ 'woocs_file_name' ];
+                $delimiter = ! empty( $_POST[ 'woocs_delimiter' ] ) ? sanitize_text_field( $_POST[ 'woocs_delimiter' ] ) : apply_filters( 'woocs_delimiter', ';' );
+                $import    = isset( $_POST[ 'woocs_import' ] ) ? true : false;
+                $max_lines = isset( $_POST[ 'woocs_max_lines' ] ) ? (int) $_POST[ 'woocs_max_lines' ] : false;
+                $remove    = isset( $_POST[ 'woocs_remove' ] ) ? true : false;
+                $verify    = isset( $_POST[ 'woocs_verify' ] ) ? true : false;
 
                 if ( true === $verify ) {
                     woocs_verify_data( $file_name, $delimiter, $verify );

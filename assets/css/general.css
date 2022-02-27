@@ -1,34 +1,16 @@
 /* errors */
 .woocs .notice--error {
-    border-left-color: #dc3232;
+  border-left-color: #dc3232;
 }
 
 .woocs .notice--success {
-    border-left-color: #43bc71;
+  border-left-color: #43bc71;
 }
 
 .woocs .notice--warning {
-    border-left-color: #ff9000;
+  border-left-color: #ff9000;
 }
 
 .woocs .notice--info {
-    border-left-color: #00a0d2;
-}
-
-.woocs .field__message {
-    background-color:  #f9f9f9;
-    border-left:       2px solid #ccd0d4;
-    border-top:        1px solid #ccd0d4;
-    border-right:      1px solid #ccd0d4;
-    border-bottom:     1px solid #ccd0d4;
-    margin-bottom:     1rem;
-    padding:           5px;
-}
-
-.woocs .field__message--error {
-    border-left-color: #dc3232;
-}
-
-.woocs .field__message--warning {
-    border-left-color: #ff9000;
+  border-left-color: #00a0d2;
 }

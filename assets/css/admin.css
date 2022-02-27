@@ -163,7 +163,7 @@
   overflow:       hidden;
 }
 
-.woocs .form--upload .upload_button {
+.woocs .form--upload .woocs_upload_button {
   border-radius: 0;
   display:       block;
   height:        37px;
@@ -313,7 +313,7 @@
     width: 350px;
   }
 
-  .woocs .form--upload .upload_button {
+  .woocs .form--upload .woocs_upload_button {
     left: 350px;
   }
 
