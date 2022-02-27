@@ -201,7 +201,7 @@
              * @return array
              */
             public function woocs_settings_link( $links ) {
-                $settings_link = [ 'settings' => '<a href="options-general.php?page=woocs-dashboard">' . esc_html__( 'Settings', 'acf-city-selector' ) . '</a>' ];
+                $settings_link = [ 'settings' => '<a href="options-general.php?page=woocs-dashboard">' . esc_html__( 'Settings', 'woocommerce-city-selector' ) . '</a>' ];
 
                 return array_merge( $settings_link, $links );
             }
@@ -217,23 +217,23 @@
                 $acfcs_subpage = ( isset( $url_array[ 'query' ] ) ) ? substr( $url_array[ 'query' ], 11 ) : false;
 
                 $pages = [
-                    'dashboard' => esc_html__( 'Dashboard', 'acf-city-selector' ),
-                    'settings'  => esc_html__( 'Settings', 'acf-city-selector' ),
-                    'search'    => esc_html__( 'Search', 'acf-city-selector' ),
-                    'preview'   => esc_html__( 'Preview', 'acf-city-selector' ),
-                    'info'      => esc_html__( 'Info', 'acf-city-selector' ),
+                    'dashboard' => esc_html__( 'Dashboard', 'woocommerce-city-selector' ),
+                    'settings'  => esc_html__( 'Settings', 'woocommerce-city-selector' ),
+                    'search'    => esc_html__( 'Search', 'woocommerce-city-selector' ),
+                    'preview'   => esc_html__( 'Preview', 'woocommerce-city-selector' ),
+                    'info'      => esc_html__( 'Info', 'woocommerce-city-selector' ),
                 ];
                 if ( true === woocs_has_cities() ) {
-                    $pages[ 'search' ] = esc_html__( 'Search', 'acf-city-selector' );
+                    $pages[ 'search' ] = esc_html__( 'Search', 'woocommerce-city-selector' );
                 }
                 if ( ! empty ( woocs_check_if_files() ) ) {
-                    $pages[ 'preview' ] = esc_html__( 'Preview', 'acf-city-selector' );
+                    $pages[ 'preview' ] = esc_html__( 'Preview', 'woocommerce-city-selector' );
                 }
                 if ( current_user_can( 'manage_options' ) ) {
-                    $pages[ 'info' ] = esc_html__( 'Info', 'acf-city-selector' );
+                    $pages[ 'info' ] = esc_html__( 'Info', 'woocommerce-city-selector' );
                 }
 
-                // $pages[ 'countries' ] = esc_html__( 'Get more countries', 'acf-city-selector' );
+                // $pages[ 'countries' ] = esc_html__( 'Get more countries', 'woocommerce-city-selector' );
 
                 ob_start();
                 foreach( $pages as $slug => $label ) {
@@ -255,9 +255,9 @@
             public function woocs_check_for_woo() {
                 if ( ! class_exists( 'Woocommerce' ) ) {
                     add_action( 'admin_notices', function () {
-                        $message = sprintf( __( '"%s" is not activated. This plugin <strong>must</strong> be activated, because without it "%s" won\'t work. Activate it <a href="%s">here</a>.', 'acf-city-selector' ),
+                        $message = sprintf( __( '"%s" is not activated. This plugin <strong>must</strong> be activated, because without it "%s" won\'t work. Activate it <a href="%s">here</a>.', 'woocommerce-city-selector' ),
                             'Woocommerce',
-                            'Woocommeerce City Selector',
+                            'Woocommerce City Selector',
                             esc_url( admin_url( 'plugins.php?s=woocommerce&plugin_status=inactive' ) ) );
                         echo sprintf( '<div class="notice notice-error"><p>%s</p></div>', $message );
                     });

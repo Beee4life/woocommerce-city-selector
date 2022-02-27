@@ -21,7 +21,7 @@
         if ( is_array( $country_files ) ) {
             foreach( $country_files as $single_file ) {
                 $single_file                   = (array) $single_file;
-                $single_file[ 'country_name' ] = esc_attr__( $single_file[ 'country_name' ], 'acf-city-selector' );
+                $single_file[ 'country_name' ] = esc_attr__( $single_file[ 'country_name' ], 'woocommerce-city-selector' );
                 $single_files[]                = $single_file;
             }
             if ( ! empty( $single_files ) ) {
@@ -32,7 +32,7 @@
         if ( is_array( $country_packs ) ) {
             foreach( $country_packs as $country_package ) {
                 $country_package                   = (array) $country_package;
-                $country_package[ 'country_name' ] = esc_attr__( $country_package[ 'country_name' ], 'acf-city-selector' );
+                $country_package[ 'country_name' ] = esc_attr__( $country_package[ 'country_name' ], 'woocommerce-city-selector' );
                 $country_packages[]                = $country_package;
             }
         }
@@ -47,26 +47,26 @@
                 <div class="admin_left">
                     <div class="content">
                         <div class="acfcs__section acfcs__section--gopro">
-                            <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Get countries', 'acf-city-selector' ) ); ?>
-                            <?php echo sprintf( '<p>%s</p>', esc_html__( 'Default the plugin comes with 2 countries included, the Netherlands and Belgium but you might want to add more countries to choose from.', 'acf-city-selector' ) ); ?>
+                            <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Get countries', 'woocommerce-city-selector' ) ); ?>
+                            <?php echo sprintf( '<p>%s</p>', esc_html__( 'Default the plugin comes with 2 countries included, the Netherlands and Belgium but you might want to add more countries to choose from.', 'woocommerce-city-selector' ) ); ?>
                             <p>
-                                <?php esc_html_e( "And now you can !! We have created several 'country packages' for you to import 'as is'.", 'acf-city-selector' ); ?>
-                                <?php echo sprintf( __( 'Download them %s.', 'acf-city-selector' ), sprintf( '<a href="%s">%s</a>', esc_url( ACFCS_WEBSITE_URL . '/get-countries/' ), __( 'here', 'acf-city-selector' ) ) ); ?>
+                                <?php esc_html_e( "And now you can !! We have created several 'country packages' for you to import 'as is'.", 'woocommerce-city-selector' ); ?>
+                                <?php echo sprintf( __( 'Download them %s.', 'woocommerce-city-selector' ), sprintf( '<a href="%s">%s</a>', esc_url( ACFCS_WEBSITE_URL . '/get-countries/' ), __( 'here', 'woocommerce-city-selector' ) ) ); ?>
                             </p>
                         </div>
 
                         <div class="acfcs__section acfcs__section--packages">
                             <?php if ( is_array( $single_files ) && ! empty( $single_files ) ) { ?>
-                                <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Country files', 'acf-city-selector' ) ); ?>
-                                <?php echo sprintf( '<div class="hide400">%s</div>', esc_html__( 'Rotate your phone for a better view or scroll the list horizontally.', 'acf-city-selector' ) ); ?>
+                                <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Country files', 'woocommerce-city-selector' ) ); ?>
+                                <?php echo sprintf( '<div class="hide400">%s</div>', esc_html__( 'Rotate your phone for a better view or scroll the list horizontally.', 'woocommerce-city-selector' ) ); ?>
 
                                 <table class="acfcs__table acfcs__table--packages scrollable">
                                     <thead>
                                     <tr>
-                                        <th colspan="2"><?php esc_html_e( 'Country', 'acf-city-selector' ); ?></th>
-                                        <th># <?php esc_html_e( 'States/Provinces', 'acf-city-selector' ); ?></th>
-                                        <th># <?php esc_html_e( 'Cities', 'acf-city-selector' ); ?></th>
-                                        <th><?php esc_html_e( 'Price', 'acf-city-selector' ); ?></th>
+                                        <th colspan="2"><?php esc_html_e( 'Country', 'woocommerce-city-selector' ); ?></th>
+                                        <th># <?php esc_html_e( 'States/Provinces', 'woocommerce-city-selector' ); ?></th>
+                                        <th># <?php esc_html_e( 'Cities', 'woocommerce-city-selector' ); ?></th>
+                                        <th><?php esc_html_e( 'Price', 'woocommerce-city-selector' ); ?></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -82,7 +82,7 @@
                                             <?php echo sprintf( '<td>%s</td>', $package[ 'country_name' ] ); ?>
                                             <?php echo sprintf( '<td>%s</td>', ( ! empty( $package[ 'number_states' ] ) ) ? $package[ 'number_states' ] : 'n/a' ); ?>
                                             <?php echo sprintf( '<td>%s</td>', $package[ 'number_cities' ] ); ?>
-                                            <?php echo sprintf( '<td>%s</td>', ( ! empty( $package[ 'price' ] ) ) ? '&euro; ' . $package[ 'price' ] . ',00' : esc_html__( 'FREE', 'acf-city-selector' ) ); ?>
+                                            <?php echo sprintf( '<td>%s</td>', ( ! empty( $package[ 'price' ] ) ) ? '&euro; ' . $package[ 'price' ] . ',00' : esc_html__( 'FREE', 'woocommerce-city-selector' ) ); ?>
                                         </tr>
                                     <?php } ?>
                                     </tbody>
@@ -90,21 +90,21 @@
                             <?php } ?>
 
                             <?php if ( is_array( $country_packages ) && ! empty( $country_packages ) ) { ?>
-                                <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Combined country packages', 'acf-city-selector' ) ); ?>
+                                <?php echo sprintf( '<h2>%s</h2>', esc_html__( 'Combined country packages', 'woocommerce-city-selector' ) ); ?>
 
                                 <table class="acfcs__table acfcs__table--packages">
                                     <thead>
                                     <tr>
-                                        <?php echo sprintf( '<th>%s</th>', esc_html__( 'Package', 'acf-city-selector' ) ); ?>
-                                        <?php echo sprintf( '<th>%s</th>', esc_html__( 'Included countries', 'acf-city-selector' ) ); ?>
-                                        <?php echo sprintf( '<th>%s</th>', esc_html__( 'As separate countries', 'acf-city-selector' ) ); ?>
-                                        <?php echo sprintf( '<th>%s</th>', esc_html__( 'Package price', 'acf-city-selector' ) ); ?>
+                                        <?php echo sprintf( '<th>%s</th>', esc_html__( 'Package', 'woocommerce-city-selector' ) ); ?>
+                                        <?php echo sprintf( '<th>%s</th>', esc_html__( 'Included countries', 'woocommerce-city-selector' ) ); ?>
+                                        <?php echo sprintf( '<th>%s</th>', esc_html__( 'As separate countries', 'woocommerce-city-selector' ) ); ?>
+                                        <?php echo sprintf( '<th>%s</th>', esc_html__( 'Package price', 'woocommerce-city-selector' ) ); ?>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php foreach( $country_packages as $package ) { ?>
                                         <tr>
-                                            <?php echo sprintf( '<td>%s</td>', __( $package[ 'country_name' ], 'acf-city-selector' ) ); ?>
+                                            <?php echo sprintf( '<td>%s</td>', __( $package[ 'country_name' ], 'woocommerce-city-selector' ) ); ?>
 
                                             <td>
                                                 <?php
@@ -146,9 +146,9 @@
                                 </table>
                             <?php } ?>
 
-                            <?php echo sprintf( '<p>%s</p>', sprintf( __( "More countries will be added soon. Feel free to %s a country, if it's not available (yet).", 'acf-city-selector' ), sprintf( '<a href="%s" target="_blank" rel="noopener">%s</a>', esc_url( 'https://github.com/Beee4life/acf-city-selector/issues' ), __( 'request', 'acf-city-selector' ) ) ) ); ?>
+                            <?php echo sprintf( '<p>%s</p>', sprintf( __( "More countries will be added soon. Feel free to %s a country, if it's not available (yet).", 'woocommerce-city-selector' ), sprintf( '<a href="%s" target="_blank" rel="noopener">%s</a>', esc_url( 'https://github.com/Beee4life/acf-city-selector/issues' ), __( 'request', 'woocommerce-city-selector' ) ) ) ); ?>
 
-                            <?php echo sprintf( '<p><a href="%s" target="_blank" rel="noopener" class="button button-primary">%s</a></p>', esc_url( ACFCS_WEBSITE_URL . '/get-countries/' ), esc_html__( 'Get your country now', 'acf-city-selector' ) ); ?>
+                            <?php echo sprintf( '<p><a href="%s" target="_blank" rel="noopener" class="button button-primary">%s</a></p>', esc_url( ACFCS_WEBSITE_URL . '/get-countries/' ), esc_html__( 'Get your country now', 'woocommerce-city-selector' ) ); ?>
 
                         </div>
                     </div>
