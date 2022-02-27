@@ -892,24 +892,3 @@
 
         return $cities;
     }
-
-
-    /**
-     * Get all translation strings for js/input fields
-     *
-     * @since 1.5.0
-     *
-     * @return array
-     */
-    function woocs_get_js_translations() {
-        $translations = array(
-            'no_countries'         => esc_attr__( 'No countries', 'woocommerce-city-selector' ),
-            'select_city'          => esc_attr( apply_filters( 'woocs_select_city_label', __( 'Select a city', 'woocommerce-city-selector' ) ) ),
-            'select_country'       => esc_attr( apply_filters( 'woocs_select_country_label', __( 'Select a country', 'woocommerce-city-selector' ) ) ),
-            'select_country_first' => esc_attr( apply_filters( 'woocs_select_country_first', __( 'No results (yet), first select a country', 'woocommerce-city-selector' ) ) ),
-            'select_state'         => esc_attr( apply_filters( 'woocs_select_province_state_label', __( 'Select a province/state', 'woocommerce-city-selector' ) ) ),
-            'select_state_first'   => esc_attr( apply_filters( 'woocs_select_state_first', __( 'No results (yet), first select a state', 'woocommerce-city-selector' ) ) ),
-        );
-
-        return $translations;
-    }
