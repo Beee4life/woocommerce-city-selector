@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || exit;
 
 		foreach ( $fields as $key => $field ) {
 			if ( in_array( $key, $woocs_fields ) ) {
-				echo "<div>Override for {$key} comes here</div>";
+				woocs_form_field( $key, $field, $checkout->get_value( $key ) );
 			} else {
 				woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
 			}
