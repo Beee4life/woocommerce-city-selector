@@ -54,7 +54,10 @@
                 // add_action( 'acf/input/admin_l10n',                 array( $this, 'acfcs_error_messages' ) );
                 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'woocs_settings_link' ) );
 
-                // functions & hooks
+				add_filter( 'wc_get_template' , 				[ $this, 'woo_template_replace'], 5 , 5 );
+				add_filter( 'wc_get_template_part', 			[ $this, 'woo_get_template_part' ], 5 , 3 );
+
+				// functions & hooks
                 include 'inc/form-handling.php';
                 include 'inc/woocs-actions.php';
                 include 'inc/woocs-functions.php';
@@ -295,7 +298,28 @@
                     wp_enqueue_script( 'woocs-admin' );
                 }
             }
-        }
+
+			public function woo_template_replace( $located, $template_name, $args, $template_path, $default_path ) {
+				if ( file_exists( plugin_dir_path( __FILE__ ) . 'templates/' . $template_name ) ) {
+					$located = plugin_dir_path( __FILE__ ) . 'templates/' . $template_name;
+				}
+
+				return $located;
+			}
+
+			public function woo_get_template_part( $template , $slug , $name ) {
+				if ( empty( $name ) ) {
+					if ( file_exists( plugin_dir_path( __FILE__ ) . "/templates/{$slug}.php" ) ) {
+						$template = plugin_dir_path( __FILE__ ) . "/templates/{$slug}.php";
+					}
+				} else {
+					if ( file_exists( plugin_dir_path( __FILE__ ) . "/templates/{$slug}-{$name}.php" ) ) {
+						$template = plugin_dir_path( __FILE__ ) . "/templates/{$slug}-{$name}.php";
+					}
+				}
+				return $template;
+			}
+		}
 
         new Woocommerce_City_Selector();
 
