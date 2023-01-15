@@ -942,8 +942,6 @@
 		$sort            = $args['priority'] ? $args['priority'] : '';
 		$field_container = '<p class="form-row %1$s" id="%2$s" data-priority="' . esc_attr( $sort ) . '">%3$s</p>';
 
-		error_log($args['type']);
-
 		switch ( $args['type'] ) {
 			case 'country':
 				$countries = 'shipping_country' === $key ? WC()->countries->get_shipping_countries() : WC()->countries->get_allowed_countries();
@@ -988,16 +986,11 @@
 			$field_html .= '</span>';
 
 		} else {
-			$field_html = '';
-			$args['description'] = "Override for {$key} comes here";
+			$field_html  = '';
+			// echo $key;
+			$description = "Override for {$key} comes here";
+			$field_html  .= sprintf( '<span class="woocommerce-input-wrapper">%s</span>', $key );
 
-			$field_html .= '<span class="woocommerce-input-wrapper">' . $field;
-
-			if ( $args['description'] ) {
-				$field_html .= $args['description'];
-			}
-
-			$field_html .= '</span>';
 		}
 		$container_class = esc_attr( implode( ' ', $args['class'] ) );
 		$container_id    = esc_attr( $args['id'] ) . '_field';

@@ -32,3 +32,16 @@
         return $field;
     }
     add_filter( 'woocommerce_form_field_state', 'woocs_filter_state_field', 10, 4 );
+
+    function woocs_checkout_fields( $fields ) {
+		// echo '<pre>'; var_dump($fields); echo '</pre>'; exit;
+		$fields[ 'billing' ][ 'billing_state' ][ 'priority' ]     = 50;
+		$fields[ 'billing' ][ 'billing_city' ][ 'priority' ]      = 60;
+		$fields[ 'billing' ][ 'billing_address_1' ][ 'priority' ] = 70;
+		$fields[ 'billing' ][ 'billing_address_2' ][ 'priority' ] = 80;
+		uasort( $fields, 'wc_checkout_fields_uasort_comparison' );
+		// echo '<pre>'; var_dump($fields); echo '</pre>'; exit;
+
+        return $fields;
+    }
+    add_filter( 'woocommerce_checkout_fields', 'woocs_checkout_fields', 1 );
