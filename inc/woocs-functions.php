@@ -892,3 +892,121 @@
 
         return $cities;
     }
+
+	function woocs_form_field( $key, $args, $value = null ) {
+		$defaults = array(
+			'type'              => 'text',
+			'label'             => '',
+			'description'       => '',
+			'placeholder'       => '',
+			'maxlength'         => false,
+			'required'          => false,
+			'autocomplete'      => false,
+			'id'                => $key,
+			'class'             => array(),
+			'label_class'       => array(),
+			'input_class'       => array(),
+			'return'            => false,
+			'options'           => array(),
+			'custom_attributes' => array(),
+			'validate'          => array(),
+			'default'           => '',
+			'autofocus'         => '',
+			'priority'          => '',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		$args = apply_filters( 'woocommerce_form_field_args', $args, $key, $value );
+
+		if ( is_string( $args['class'] ) ) {
+			$args['class'] = array( $args['class'] );
+		}
+
+		if ( $args['required'] ) {
+			$args['class'][] = 'validate-required';
+			$required        = '&nbsp;<abbr class="required" title="' . esc_attr__( 'required', 'woocommerce' ) . '">*</abbr>';
+		} else {
+			$required = '&nbsp;<span class="optional">(' . esc_html__( 'optional', 'woocommerce' ) . ')</span>';
+		}
+
+		if ( is_string( $args['label_class'] ) ) {
+			$args['label_class'] = array( $args['label_class'] );
+		}
+
+		// Custom attribute handling.
+		$custom_attributes           = [];
+		$args[ 'custom_attributes' ] = array_filter( (array) $args[ 'custom_attributes' ], 'strlen' );
+
+		$field           = '';
+		$label_id        = $args['id'];
+		$sort            = $args['priority'] ? $args['priority'] : '';
+		$field_container = '<p class="form-row %1$s" id="%2$s" data-priority="' . esc_attr( $sort ) . '">%3$s</p>';
+
+		error_log($args['type']);
+
+		switch ( $args['type'] ) {
+			case 'country':
+				$countries = 'shipping_country' === $key ? WC()->countries->get_shipping_countries() : WC()->countries->get_allowed_countries();
+
+				if ( 1 === count( $countries ) ) {
+
+					$field .= '<strong>' . current( array_values( $countries ) ) . '</strong>';
+
+					$field .= '<input type="hidden" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="' . current( array_keys( $countries ) ) . '" ' . implode( ' ', $custom_attributes ) . ' class="country_to_state" readonly="readonly" />';
+
+				} else {
+					$data_label = ! empty( $args['label'] ) ? 'data-label="' . esc_attr( $args['label'] ) . '"' : '';
+
+					$field = '<select name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" class="country_to_state country_select ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" ' . implode( ' ', $custom_attributes ) . ' data-placeholder="' . esc_attr( $args['placeholder'] ? $args['placeholder'] : esc_attr__( 'Select a country / region&hellip;', 'woocommerce' ) ) . '" ' . $data_label . '><option value="">' . esc_html__( 'Select a country / region&hellip;', 'woocommerce' ) . '</option>';
+
+					foreach ( $countries as $ckey => $cvalue ) {
+						$field .= '<option value="' . esc_attr( $ckey ) . '" ' . selected( $value, $ckey, false ) . '>' . esc_html( $cvalue ) . '</option>';
+					}
+
+					$field .= '</select>';
+
+					$field .= '<noscript><button type="submit" name="woocommerce_checkout_update_totals" value="' . esc_attr__( 'Update country / region', 'woocommerce' ) . '">' . esc_html__( 'Update country / region', 'woocommerce' ) . '</button></noscript>';
+
+				}
+				break;
+
+		}
+
+		if ( ! empty( $field ) ) {
+			$field_html = '';
+
+			if ( $args['label'] && 'checkbox' !== $args['type'] ) {
+				$field_html .= '<label for="' . esc_attr( $label_id ) . '" class="' . esc_attr( implode( ' ', $args['label_class'] ) ) . '">' . wp_kses_post( $args['label'] ) . $required . '</label>';
+			}
+
+			$field_html .= '<span class="woocommerce-input-wrapper">' . $field;
+
+			if ( $args['description'] ) {
+				$field_html .= '<span class="description" id="' . esc_attr( $args['id'] ) . '-description" aria-hidden="true">' . wp_kses_post( $args['description'] ) . '</span>';
+			}
+
+			$field_html .= '</span>';
+
+		} else {
+			$field_html = '';
+			$args['description'] = "Override for {$key} comes here";
+
+			$field_html .= '<span class="woocommerce-input-wrapper">' . $field;
+
+			if ( $args['description'] ) {
+				$field_html .= $args['description'];
+			}
+
+			$field_html .= '</span>';
+		}
+		$container_class = esc_attr( implode( ' ', $args['class'] ) );
+		$container_id    = esc_attr( $args['id'] ) . '_field';
+		$field           = sprintf( $field_container, $container_class, $container_id, $field_html );
+
+		if ( $args[ 'return' ] ) {
+			return $field;
+		} else {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $field;
+		}
+	}
